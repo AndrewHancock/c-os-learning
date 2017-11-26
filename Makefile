@@ -15,8 +15,8 @@ $(OBJDIR):
 $(BINDIR):
 	mkdir $(BINDIR)
 
-%.o: $(SRCDIR)/*/%.c | $(OBJDIR)
-	$(CC) -c -o $(OBJDIR)/$@ $<
+$(OBJDIR)/%.o: $(SRCDIR)/*/%.c | $(OBJDIR)
+	$(CC) -c -o $@ $<
 
-copy: copy.o err_msg.o| $(BINDIR)
-	$(CC) -o $(BINDIR)/copy $(OBJDIR)/copy.o $(OBJDIR)/err_msg.o
+$(BINDIR)/copy: $(OBJDIR)/copy.o $(OBJDIR)/err_msg.o| $(BINDIR)
+	$(CC) -o $@ $(OBJDIR)/copy.o $(OBJDIR)/err_msg.o

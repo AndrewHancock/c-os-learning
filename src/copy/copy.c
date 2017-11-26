@@ -2,7 +2,6 @@
 #include <sys/types.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include <fcntl.h>
 #include "../lib/err_msg.h"
 
