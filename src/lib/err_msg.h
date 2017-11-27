@@ -5,5 +5,6 @@ void usageErr(const char *format, ...);
 
 void errExit(const char *format, ...);
 
+void fatal(const char *format, ...);
 
 #endif

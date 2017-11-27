@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
   /* Read data from the input file and write it to the output */
   while((numRead = read(inputFd, buf, 1024)) > 0)
     if(write(outputFd, buf, numRead) != numRead)
-      exit(EXIT_FAILURE);
+      fatal("couldn't write whole buffer");
   
   if(numRead == -1)
     errExit("read");

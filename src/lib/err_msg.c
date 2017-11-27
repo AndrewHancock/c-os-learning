@@ -3,6 +3,18 @@
 #include <stdlib.h>
 #include "err_msg.h"
 
+static void outputError(const char *format, va_list ap) {
+#define ERR_BUF_SIZE 500
+  char buf[ERR_BUF_SIZE], userMsg[ERR_BUF_SIZE], errText[ERR_BUF_SIZE];
+  
+  vsnprintf(userMsg, ERR_BUF_SIZE, format, ap);
+  
+  fflush(stdout);
+  fputs(buf, stderr);
+  fflush(stderr);
+
+}
+
 void usageErr(const char *format, ...) {
   va_list argList;
   fflush(stdout);
@@ -18,10 +30,20 @@ void usageErr(const char *format, ...) {
 
 void errExit(const char *format, ...) {
   va_list argList;
-  char buf[500];  
   
   va_start(argList, format);
-  snprintf(buf, 500, format, argList);
+  outputError(format, argList);
   va_end(argList);
+
+  exit(EXIT_FAILURE);  
+}
+
+void fatal(const char *format, ...) {
+  va_list argList;
+
+  va_start(argList, format);
+  outputError(format, argList);
+  va_end(argList);
+
   exit(EXIT_FAILURE);  
 }
