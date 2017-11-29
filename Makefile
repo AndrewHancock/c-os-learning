@@ -20,3 +20,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/*/%.c | $(OBJDIR)
 
 $(BINDIR)/copy: $(OBJDIR)/copy.o $(OBJDIR)/err_msg.o| $(BINDIR)
 	$(CC) -o $@ $(OBJDIR)/copy.o $(OBJDIR)/err_msg.o
+
+$(BINDIR)/tee: $(OBJDIR)/tee.o $(OBJDIR)/err_msg.o| $(BINDIR)
+	$(CC) -o $@ $(OBJDIR)/tee.o $(OBJDIR)/err_msg.o
